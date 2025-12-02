@@ -1,0 +1,12 @@
+# Root BUILD file for Advent of Code
+
+load("@rules_python//python:defs.bzl", "py_binary")
+
+py_binary(
+    name = "generate_days",
+    srcs = ["generate_days.py"],
+    data = glob(["templates/*.j2"]),
+    deps = [
+        "@pip//jinja2",
+    ],
+)

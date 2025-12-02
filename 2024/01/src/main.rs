@@ -2,11 +2,15 @@ use std::fs::File;
 use std::path::Path;
 use std::io::{self, BufRead};
 
+fn get_input_path() -> &'static str {
+    option_env!("AOC_INPUT_PATH").unwrap_or("input.txt")
+}
+
 fn main() -> io::Result<()> {
 
     // Specify the file path
-    let path = Path::new("input.txt");
-    let file = File::open(&path)?;
+    let path = Path::new(get_input_path());
+    let file = File::open(&path)?;;
     let reader = io::BufReader::new(file);
 
     let mut first_numbers = Vec::new();

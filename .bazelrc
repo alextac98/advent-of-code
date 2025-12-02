@@ -1,0 +1,11 @@
+# Build options
+build --enable_bzlmod
+
+# Rust specific options
+build --@rules_rust//rust/toolchain/channel=stable
+
+# Performance options
+build --jobs=auto
+
+# Test options
+test --test_output=errors

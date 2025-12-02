@@ -1,5 +1,10 @@
 use std::fs;
 
+/// Get the input file path - uses Bazel runfiles or falls back to current directory
+fn get_input_path() -> &'static str {
+    option_env!("AOC_INPUT_PATH").unwrap_or("input.txt")
+}
+
 /// Check if a number is "invalid" - made of some sequence of digits repeated at least twice
 /// e.g., 55 (5 twice), 6464 (64 twice), 123123123 (123 three times), 1111111 (1 seven times)
 fn is_invalid_id(n: u64) -> bool {
@@ -67,7 +72,7 @@ fn solve(input: &str) -> u64 {
 
 fn main() {
     // Read and solve the actual input
-    let input = fs::read_to_string("input.txt").expect("Failed to read input.txt");
+    let input = fs::read_to_string(get_input_path()).expect("Failed to read input.txt");
     let result = solve(&input);
     println!("Answer: {}", result);
 }
